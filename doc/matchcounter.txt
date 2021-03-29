@@ -1,0 +1,99 @@
+*matchcounter.txt*  search improved
+
+                    Matchcounter - label mode for search
+
+==============================================================================
+OVERVIEW                                                *matchcounter*
+
+Matchcounter allows you to quickly jump to search results by displaying labels
+that you can jump to by pressing the key associated with the label
+
+Matchcounter works with Vim 8.0+.
+
+==============================================================================
+USAGE                                                   *matchcounter-usage*
+
+Search with / or ? and if there is more than one visible match, then the
+matches are labeled. Press a label to jump there.
+
+==============================================================================
+FEATURES                                                *matchcounter-features*
+
+- Jump to a label by typing its character.              *matchcounter-fallthrough*
+- Non-label keys "fall through" to normal-mode, so you don't need to
+  explicitly exit label-mode if the first match is correct.
+- <Tab> skips to the next set of matches (<BS>, <S-Tab> go the other way).
+  These actions are preserved with dot-repeat.
+- <Space> or <Esc> exits label-mode. |g:matchcounter#label_esc|
+- |folds| are skipped (not labeled). Use |;| and |,| to reach folded or
+  off-screen matches.
+
+==============================================================================
+CONFIGURATION                                           *matchcounter-config*
+
+Matchcounter is designed with sane, effective defaults, to avoid configuration as
+much as possible. But you can change them as follows.
+
+------------------------------------------------------------------------------
+OPTIONS                                                 *matchcounter-options*
+
+To change an option, add a |let| statement in your |vimrc|. Example: >
+    let g:matchcounter#target_labels = 'n01234'
+<
+g:matchcounter#label_esc = "\<Space>"                    *g:matchcounter#label_esc*
+
+    Exit label mode as if <Esc> were pressed.
+        https://github.com/justinmk/vim-matchcounter/issues/122
+
+g:matchcounter#target_labels = ";sftunq/SFGHLTUNRMQZ?0"  *g:matchcounter#target_labels*
+
+    List of characters used to label the target locations.
+
+    Labels should be keys that you never use after searching. E.g. it is
+    unlikely that you will use "F" immediately after a Matchcounter, so "F" is in the
+    label list. This removes a step if the first match is correct: instead,
+    just type your next command. |matchcounter-fallthrough|
+
+    Note: Any key mapped to <Plug>Matchcounter_; is moved to the first position
+    (because it's semantically equivalent).
+
+    Note: Invalid target labels are removed:
+        - Any key mapped to <Plug>Matchcounter_,
+        - Special keys: <Esc> <Tab> <BS>
+        - Invisible keys: <Space> <Enter>
+
+------------------------------------------------------------------------------
+HIGHLIGHTING                                            *matchcounter-highlight*
+
+Matchcounter uses these highlight groups:
+
+    Matchcounter
+        Highlights Matchcounter matches. Default color is hideous magenta :)
+        Also used for the labels unless "MatchcounterLabel" group exists.
+
+    MatchcounterLabel
+        Highlights for the labels.
+
+To customize colors: >
+    highlight Matchcounter guifg=black guibg=red ctermfg=black ctermbg=red
+    highlight MatchcounterScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+
+To disable highlighting: >
+    highlight link Matchcounter None
+    " Needed if a plugin sets the colorscheme dynamically:
+    autocmd User MatchcounterLeave highlight clear Matchcounter
+
+==============================================================================
+CREDITS                                                 *matchcounter-credits*
+
+Author: Thomas K.
+
+Matchcounter was inspired by vim-sneak, vim-seek, vim-easymotion, clever-f, and
+Tim Pope's plugins.
+
+    https://github.com/goldfeld/vim-seek
+    https://github.com/Lokaltog/vim-easymotion
+    https://github.com/rhysd/clever-f.vim
+
+==============================================================================
+vim:tw=78:sw=4:ts=8:ft=help:norl:
