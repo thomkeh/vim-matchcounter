@@ -1,16 +1,15 @@
 matchcounter.vim
 ================
 
-> Label mode for search.
+When searching in vim with `/` or `?` you can jump to matches with `<number>n`
+where `<number>` is for example `3` or `42`. (So, `3n` will jump to the 3rd match.)
 
-Fork of [sneak.vim](http://github.com/justinmk/vim-sneak)
-that hooks sneak's label mode into vim's native search.
-
-It's is essentially a light-weight re-implementation of
-[incsearch-easymotion.vim](https://github.com/haya14busa/incsearch-easymotion.vim)
-or [easymotion](https://github.com/easymotion/vim-easymotion)'s n-character search motion.
-One shortcoming with those is that they don't have regex support.
-As this plugin only hooks in at the end of vim's native search, you get vim's full power.
+The problem with that is that you have to know the right number for the match your interested in.
+And this is what `matchcounter.vim` solves.
+If a search performed with `/` or `?` finds more than 1 match in the visible area,
+then this plugin displays a counter for each match,
+so that you know which number to type to jump there.
+If you don't type a number, then the counter disappears immediately.
 
 Usage
 -----
@@ -27,16 +26,6 @@ Install
   - `git clone git://github.com/thomkeh/vim-matchcounter.git ~/.vim/bundle/vim-sneak`
 - Manual installation:
   - Copy the files to your `.vim` directory.
-
-FAQ
----
-
-### Why not use Sneak?
-
-First, I find two characters often too limited for narrowing down my search.
-Second, I don't see the point of using `s`/`S` when I already use `/`/`?` a lot.
-Third, if you are in an environment where you don't have your plugins,
-then using `/`/`?` fails gracefully (you would just get normal search).
 
 Related
 -------
