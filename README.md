@@ -11,11 +11,16 @@ then this plugin displays a counter for each match,
 so that you know which number to type to jump there.
 If you don't type a number, then the counter disappears immediately.
 
+![example](https://user-images.githubusercontent.com/7741417/114547302-3083da00-9c56-11eb-948c-a61d7d62dd3e.png)
+
 Usage
 -----
 
 Just search something with `/`, and if there are multiple matches visible in your window,
 labels will appear that allow you to jump directly to any of the matches.
+
+This plugin does not change any mappings.
+It uses the `CmdlineLeave` autocommand to know when a search happened.
 
 Install
 -------
