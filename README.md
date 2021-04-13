@@ -19,8 +19,9 @@ Usage
 Just search something with `/`, and if there are multiple matches visible in your window,
 labels will appear that allow you to jump directly to any of the matches.
 
-This plugin does not change any mappings.
-It uses the `CmdlineLeave` autocommand to know when a search happened.
+*This plugin does not change any mappings.*
+It uses the `CmdlineLeave` autocommand to know when a search happened,
+and merely displays some labels for a while.
 
 Install
 -------
