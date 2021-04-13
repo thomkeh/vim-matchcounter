@@ -33,6 +33,13 @@ Install
 - Manual installation:
   - Copy the files to your `.vim` directory.
 
+Customization
+-------------
+
+The only thing that can be customized is the background color
+of the counter labels (magenta by default).
+See the help for details.
+
 Related
 -------
 
