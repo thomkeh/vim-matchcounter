@@ -1,6 +1,6 @@
-" matchcounter.vim - The missing motion
-" Author:       Justin M. Keyes
-" Version:      1.8
+" matchcounter.vim - Display a counter for matches
+" Author:       Thomas M. Kehrenberg
+" Version:      0.1
 " License:      MIT
 
 if exists('g:loaded_matchcounter_plugin') || &compatible || v:version < 700
@@ -40,14 +40,16 @@ endf
 
 
 augroup sneakysneak
-    au!
-    au CmdlineLeave / call s:delayed_call(0)
-    au CmdlineLeave \? call s:delayed_call(1)
-    " au CmdlineEnter / mark '
+  au!
+  au CmdlineLeave / call s:delayed_call(0)
+  au CmdlineLeave \? call s:delayed_call(1)
+  " au CmdlineEnter / mark '
 augroup END
 
 func! s:delayed_call(reverse) abort
+  if !v:event.abort
     call timer_start(0, {-> matchcounter#wrap(a:reverse)})
+  endif
 endf
 
 " Entrypoint.
